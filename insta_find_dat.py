@@ -17,13 +17,8 @@ except:
 
 
 def cmdlist():
-    pc.printout("FILE=y/n\t")
-    print("Enable/disable output in a '<target username>_<command>.txt' file'")
-    pc.printout("JSON=y/n\t")
-    print("Enable/disable export in a '<target username>_<command>.json' file'")
     pc.printout("location\t\t")
     print("tìm tất cả địa chỉ trên các bức ảnh nó checking")
-    print("Get target's photos captions")
     pc.printout("flusremail\t")
     print("lấy địa chỉ email của mấy đứa nó follow")
     pc.printout("flemail\t")
@@ -91,15 +86,15 @@ commands = {
     'quit': _quit,
     'exit': _quit,
     'location': api.get_location,
-    'fl user email': api.get_fluseremail,
-    'fl email': api.get_flemail,
-    'fl user phone': api.get_flphone,
-    'fl phone': api.get_flphone,
+    'fluseremail': api.get_fluseremail,
+    'flemail': api.get_flemail,
+    'fluserphone': api.get_flphone,
+    'flphone': api.get_flphone,
     'info': api.get_user_info,
-    'photo des': api.get_photo_description,
-    'photo user': api.get_user_photo,
+    'photodes': api.get_photo_description,
+    'photouser': api.get_user_photo,
     'media': api.get_media_type,
-    'photo profile': api.get_user_profile_picture,
+    'photoprofile': api.get_user_profile_picture,
     'stories': api.get_user_stories,
     'target': api.change_target,
 }
@@ -109,13 +104,13 @@ gnureadline.parse_and_bind("tab: complete")
 gnureadline.set_completer(completer)
 
 while True:
-    pc.printout("Nhập commands đê: ", pc.YELLOW)
+    pc.printout("chọn command(list): ", pc.YELLOW)
     cmd = input()
 
     _cmd = commands.get(cmd)
-
+    
     if _cmd:
-        _cmd()
+        _cmd()    
     elif cmd == "FILE=y":
         api.set_write_file(True)
     elif cmd == "FILE=n":
@@ -127,4 +122,4 @@ while True:
     elif cmd == "":
         print("")
     else:
-        pc.printout("Không tìm thấy\n", pc.RED)
+        pc.printout("Ko tìm thấy giá trị\n", pc.RED)
