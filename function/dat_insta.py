@@ -48,21 +48,21 @@ class dat_insta:
 
     def __getUsername__(self):
         try:
-            u = open("../config/tk.conf", "r").read()
+            u = open("../tk.conf", "r").read()
             u = u.replace("\n", "")
             return u
         except FileNotFoundError:
-            pc.printout(": file \"config/tk.conf\" không có!", pc.RED)
+            pc.printout(": file \"tk.conf\" không có!", pc.RED)
             pc.printout("\n")
             sys.exit(0)
 
     def __getPassword__(self):
         try:
-            p = open("../config/mk.conf", "r").read()
+            p = open("../mk.conf", "r").read()
             p = p.replace("\n", "")
             return p
         except FileNotFoundError:
-            pc.printout("Error: file \"config/mk.conf\" not found!", pc.RED)
+            pc.printout("Error: file \"mk.conf\" not found!", pc.RED)
             pc.printout("\n")
             sys.exit(0)
 
@@ -473,7 +473,7 @@ class dat_insta:
 
     def login(self, u, p):
         try:
-            settings_file = "../config/settings.json"
+            settings_file = "../settings.json"
             if not os.path.isfile(settings_file):
                 # settings file does not exist
                 print('Unable to find file: {0!s}'.format(settings_file))
