@@ -524,19 +524,13 @@ class dat_insta:
             json.dump(cache_settings, outfile, default=self.to_json)
             # print('SAVED: {0!s}'.format(new_settings_file))
 
-    def check_following(self):
-        if str(self.target_id) == self.api.authenticated_user_id:
-            return True
-        endpoint = 'users/{user_id!s}/full_detail_info/'.format(**{'user_id': self.target_id})
-        return self.api._call_api(endpoint)['user_detail']['user']['friendship_status']['following']
-
     def check_private_profile(self):
         if self.is_private and not self.following:
-            pc.printout("thật khó để thực hiện command khi đó là tài khoản private\n", pc.RED)
-            send = input("bạn có muốn gửi lời mời Follow không[Y/N]: ")
+            pc.printout("Impossible to execute command: user has private profile\n", pc.RED)
+            send = input("Do you want send a follow request? [Y/N]: ")
             if send.lower() == "y":
                 self.api.friendships_create(self.target_id)
-                print("mình gửi rồi đó p/s bạn chỉ sử dụng command khi người ta chấp nhận follow")
+                print("Sent a follow request to target. Use this command after target accepting the request.")
 
             return True
         return False
