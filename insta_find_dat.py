@@ -98,7 +98,7 @@ commands = {
     'info': api.get_user_info,
     'photo des': api.get_photo_description,
     'photo user': api.get_user_photo,
-    'media': apt.get_media_type,
+    'media': api.get_media_type,
     'photo profile': api.get_user_profile_picture,
     'stories': api.get_user_stories,
     'target': api.change_target,
