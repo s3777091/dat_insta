@@ -27,13 +27,11 @@ def cmdlist():
     print("tìm số đth của mấy đứa nó follow")
     pc.printout("flphone\t")
     print("tìm số đth của mấy đứa nó follow")
-    pc.printout("tarinfo\t\t")
+    pc.printout("info\t\t")
     print("Get target info")
-    pc.printout("photodes\t")
-    print("lấy ảnh description")
-    pc.printout("photos\t\t")
+    pc.printout("photouser\t\t")
     print("tải mấy ảnh của nó")
-    pc.printout("propic\t\t")
+    pc.printout("photoprofile\t\t")
     print("lấy ảnh avatar")
     pc.printout("media\t\t")
     print("tải media của nó")
@@ -91,7 +89,6 @@ commands = {
     'fluserphone': api.get_flphone,
     'flphone': api.get_flphone,
     'info': api.get_user_info,
-    'photodes': api.get_photo_description,
     'photouser': api.get_user_photo,
     'media': api.get_media_type,
     'photoprofile': api.get_user_profile_picture,
