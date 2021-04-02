@@ -297,56 +297,6 @@ class dat_insta:
             pc.printout("\n")
             exit(2)
 
-    def get_photo_description(self):
-        if self.check_private_profile():
-            return
-
-        content = requests.get("https://www.instagram.com/" + str(self.target) + "/?__a=1")
-        data = content.json()
-
-        dd = data['graphql']['user']['edge_owner_to_timeline_media']['edges']
-
-        if len(dd) > 0:
-            pc.printout("\nOhh shit tôi tìm được rồi " + str(len(dd)) + " descriptions\n", pc.GREEN)
-
-            count = 1
-
-            t = PrettyTable(['Photo', 'Description'])
-            t.align["Photo"] = "l"
-            t.align["Description"] = "l"
-
-            json_data = {}
-            descriptions_list = []
-
-            for i in dd:
-                node = i.get('node')
-                descr = node.get('accessibility_caption')
-                t.add_row([str(count), descr])
-
-                if self.jsonDump:
-                    description = {
-                        'description': descr
-                    }
-                    descriptions_list.append(description)
-
-                count += 1
-
-            if self.writeFile:
-                file_name = "output/" + self.target + "_photodes.txt"
-                file = open(file_name, "w")
-                file.write(str(t))
-                file.close()
-
-            if self.jsonDump:
-                json_data['descriptions'] = descriptions_list
-                json_file_name = "output/" + self.target + "_descriptions.json"
-                with open(json_file_name, 'w') as f:
-                    json.dump(json_data, f)
-
-            print(t)
-        else:
-            pc.printout("tìm không ra nè :-(\n", pc.RED)
-
     def get_user_photo(self):
         if self.check_private_profile():
             return
